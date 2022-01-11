@@ -1,0 +1,58 @@
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia2 %}
+<h2 class="text-white-50 mx-auto mt-2 mb-5">EDITAR PERFIL DE USUARIO</h2>
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+
+<div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src="{% static 'AppCoder/assets/img/primer plano3.png' %}" alt="..." /></div>
+    <div class="col-lg-6">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 class="text-white">Editá tu usuario!</h4>
+                    <p class="mb-0 text-white-50">Modificá los campos a continuación:</p>
+                    <hr class="d-none d-lg-block mb-0 ms-0" />
+
+                    {% if miFormulario.errors  %}
+
+                    <p>ERROR!!!!</p>
+                    {% endif %}
+
+                    <form action="" method= "POST"> {% csrf_token  %}
+
+                       <table>
+
+
+                          {{ miFormulario.as_table  }}
+
+                       </table>
+
+                        
+                        
+
+                        <input type="submit" value= "EDITAR">
+
+
+                    </form>
+                    <br>
+                    <button>
+                        <a  href="{% url 'AgregarAvatar' %}">AGREGAR AVATAR</a>   
+                       </button>
+                    <br>   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

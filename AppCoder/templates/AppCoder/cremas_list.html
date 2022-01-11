@@ -1,0 +1,81 @@
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia2 %}
+<h2 class="text-white-50 mx-auto mt-2 mb-5">CATALOGO DE CREMAS</h2>
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+
+<div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src="{% static 'AppCoder/assets/img/crema.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 class="text-white">Cremas:</h4>
+                    <p class="mb-0 text-white-50">En stock</p>
+                    <hr class="d-none d-lg-block mb-0 ms-0" />
+
+                    
+                       <u1>
+                       {%  for crema in object_list   %}
+
+                         <p>NOMBRE: {{crema.nombre}}</p>
+                           <button>
+
+                            <a href="{% url 'Detail' crema.id %}">VER</a> 
+                            </button>    
+                            <button>
+                            <a href="{% url 'Edit' crema.id %}">EDITAR</a> 
+                            </button>
+
+                            <button>
+                            <a href="{% url 'Delete' crema.id %}">ELIMINAR</a> 
+
+                            </button> 
+                       {% endfor %}
+                    
+                       
+                       
+                       <p class="mb-0 text-white-50">Agregar producto</p>     
+                       <button>
+                       <a href="{% url 'New'  %}">NUEVO</a> 
+                       </button>
+                       
+                       
+                    
+
+                       <p class="mb-0 text-white-50">Buscar producto</p>     
+                       <button>
+                       <a href="{% url 'BusquedaCremas'  %}">BUSCAR</a> 
+                       </button>
+                       </p>
+                       
+
+
+                      
+                       </u1>
+
+                       
+
+                    
+                    
+
+                    
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

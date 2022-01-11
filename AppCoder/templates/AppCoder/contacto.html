@@ -1,0 +1,56 @@
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia2 %}
+<h2 class="text-white-50 mx-auto mt-2 mb-5">CONTACTO</h2>
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+
+<div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src="{% static 'AppCoder/assets/img/Modelo.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 class="text-white">Contactanos!!</h4>
+                    <p class="mb-0 text-white-50">Dejanos tu mensaje y a la brevedad nos comunicaremos con vos!</p>
+                    <hr class="d-none d-lg-block mb-0 ms-0" />
+
+                    {% if miFormulario.errors  %}
+
+                    <p>ERROR!!!!</p>
+                    {% endif %}
+
+                    <form action="/AppCoder/contacto" method= "POST">{% csrf_token %}
+                        <!--
+                        <p>Nombre y Apellido: <input type="text"   name="nombre">                     </p>
+                        <p>Mail: <input type="text"   name="mail">                     </p>
+                        <p>Telefono: <input type="number"   name="telefono">                     </p>
+                        <p>Mensaje: <input type="text"   name="mensaje">     </p>
+
+                        -->
+                        <table>
+
+                        {{  miFormulario.as_table  }}
+
+
+                        </table>
+
+                        <input type="submit" value= "ENVIAR!">
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

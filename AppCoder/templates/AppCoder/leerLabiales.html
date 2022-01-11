@@ -1,0 +1,75 @@
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia2 %}
+<h2 class="text-white-50 mx-auto mt-2 mb-5">CATALOGO DE LABIALES</h2>
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+
+<div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src="{% static 'AppCoder/assets/img/labiales-destacada.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 class="text-white">Labiales:</h4>
+                    <p class="mb-0 text-white-50">En stock</p>
+                    <hr class="d-none d-lg-block mb-0 ms-0" />
+
+                    
+                       <u1>
+                       {%  for l in labiales   %}
+
+                       <li>{{l}}</li>
+                       <button>
+
+                            <a href="{% url 'EliminarLabial' l.nombre   %}">ELIMINAR</a>
+
+                       </button> 
+                       
+                       <button>
+                            <a href="{% url 'EditarLabial' l.nombre   %}">EDITAR</a>
+
+
+                       </button>
+                       <br>
+                       
+
+
+                       {% endfor %}
+                       </u1>
+                       <br>
+                       <button>
+                       <a href="{% url 'LabialesFormulario' %}">AGREGAR OTRO LABIAL</a>
+                       </button>
+                       <br>
+
+                    
+                       <button>
+                        <a href="{% url 'Makeup' %}">REGRESAR</a>
+                            
+                   
+
+                       </button>
+                       
+                    
+                    
+
+                    
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

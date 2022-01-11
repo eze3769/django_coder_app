@@ -1,0 +1,75 @@
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia2 %}
+<h2 class="text-white-50 mx-auto mt-2 mb-5">SKINCARE</h2>
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+<div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src="{% static 'AppCoder/assets/img/scrub3.jpeg' %}" alt="..." /></div>
+    <div class="col-lg-6">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 class="text-white">Scrub de labios</h4>
+                    <p class="mb-0 text-white-50">Exfoliantes de labios con diferentes aromas.</p>
+                    <hr class="d-none d-lg-block mb-0 ms-0" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Project Two Row-->
+<div class="row gx-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src= "{% static 'AppCoder/assets/img/balsamo.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6 order-lg-first">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-right">
+                    <h4 class="text-white">Bálsamos labiales humectantes</h4>
+                    <p class="mb-0 text-white-50"> Vienen en varios aromas. Dejan tus labios ultrahumectados de forma natural. </p>
+                    <hr class="d-none d-lg-block mb-0 me-0" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src="{% static 'AppCoder/assets/img/mascara2.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 class="text-white">Máscaras faciales y agua micelar bifásica</h4>
+                    <p class="mb-0 text-white-50"> Dejan tu piel libre de impurezas. </p>
+                    <hr class="d-none d-lg-block mb-0 ms-0" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Project Two Row-->
+<div class="row gx-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src= "{% static 'AppCoder/assets/img/cremas-rostro.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6 order-lg-first">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-right">
+                    <h4 class="text-white">Tónicos, cremas humectantes y serums de ácido hialurónico</h4>
+                    <p class="mb-0 text-white-50"> Incorporalos a tu rutina diaria de skincare y vas a tener la piel más humectada que nunca. </p>
+                    <hr class="d-none d-lg-block mb-0 me-0" />
+                    <a class="btn btn-primary" href="{% url 'List' %}">Catálogo de Cremas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+
+
+
+{% endblock %}

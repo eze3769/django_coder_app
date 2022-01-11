@@ -1,0 +1,76 @@
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia2 %}
+<h2 class="text-white-50 mx-auto mt-2 mb-5">MAKEUP</h2>
+{% endblock %}
+
+
+{% block contenidoQueCambia %}
+
+<div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src="{% static 'AppCoder/assets/img/tonos-de-labiales.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 class="text-white">Labiales</h4>
+                    <p class="mb-0 text-white-50">Cremosos, líquidos, líquidos intransferibles mate, gloss.</p>
+                    <hr class="d-none d-lg-block mb-0 ms-0" />
+                    <a class="btn btn-primary" href="{% url 'LeerLabiales' %}">Catálogo de Labiales</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Project Two Row-->
+<div class="row gx-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src= "{% static 'AppCoder/assets/img/delineadores.webp' %}" alt="..." /></div>
+    <div class="col-lg-6 order-lg-first">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-right">
+                    <h4 class="text-white">Delineadores, sombras y máscaras de pestañas</h4>
+                    <p class="mb-0 text-white-50">Delineadores líquidos, en gel, lápiz, sombras en polvo y máscaras de pestañas, en sus dos versiones lavables y waterproof. </p>
+                    <hr class="d-none d-lg-block mb-0 me-0" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src="{% static 'AppCoder/assets/img/bases2.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 class="text-white">Bases y correctores</h4>
+                    <p class="mb-0 text-white-50"> Bases líquidas y compactas, correctores líquidos y en barra. </p>
+                    <hr class="d-none d-lg-block mb-0 ms-0" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Project Two Row-->
+<div class="row gx-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src= "{% static 'AppCoder/assets/img/contour.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6 order-lg-first">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-right">
+                    <h4 class="text-white">Iluminadores, bronzers, rubor y contouring</h4>
+                    <p class="mb-0 text-white-50"> Iluminadores líquidos y en polvo, bronzers, paletas para contouring y rubor. </p>
+                    <hr class="d-none d-lg-block mb-0 me-0" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+
+
+
+{% endblock %}
