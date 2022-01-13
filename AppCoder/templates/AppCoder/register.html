@@ -23,24 +23,22 @@
                     <p>ERROR!!!!</p>
                     {% endif %}
 
-                    <form action="" method= "POST">
+                    <form action="" method= "POST" class="d-flex flex-column text-white p-3 mx-5">
 
                         {% csrf_token  %}
 
                         {{form.as_table}}
                         
                     
-
-                        <input type="submit" value= "REGISTRATE!">
+                        <div class="m-3">
+                            <input type="submit" value= "REGISTRATE!" class="btn btn-primary">
+                        </div>
+                        
                     </form>
 
                     <br>
-                    <button>
-                        <a href="{% url 'Login' %}">REGRESAR</a>
+                        <a href="{% url 'Login' %}" class="btn btn-secondary">REGRESAR</a>
                             
-                   
-
-                    </button>
                     <br>
 
                         

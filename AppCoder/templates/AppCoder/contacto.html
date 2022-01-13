@@ -23,7 +23,7 @@
                     <p>ERROR!!!!</p>
                     {% endif %}
 
-                    <form action="/AppCoder/contacto" method= "POST">{% csrf_token %}
+                    <form action="/AppCoder/contacto" method= "POST" class="d-flex flex-column text-white p-3 mx-5">{% csrf_token %}
                         <!--
                         <p>Nombre y Apellido: <input type="text"   name="nombre">                     </p>
                         <p>Mail: <input type="text"   name="mail">                     </p>
@@ -38,7 +38,7 @@
 
                         </table>
 
-                        <input type="submit" value= "ENVIAR!">
+                        <input type="submit" value= "ENVIAR!" class="btn btn-primary">
 
 
                     </form>

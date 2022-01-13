@@ -23,14 +23,16 @@
                     <p>ERROR!!!!</p>
                     {% endif %}
 
-                    <form action="" method= "POST">
+                    <form action="" method= "POST" class="d-flex flex-column text-black px-3 mx-5">
 
                         {% csrf_token  %}
 
                         {{form.as_p}}
                         
-
-                        <input type="submit" value= "LOGIN!">
+                        <div class="m-3">
+                            <input type="submit" value= "LOGIN!" class="btn btn-primary">
+                        </div>
+                        
 
 
                     </form>
@@ -38,9 +40,7 @@
                   
                     <br>
                     <p class="mb-0 text-white-50">Si no tenés usuario, registrate!.</p>
-                    <button>
-                     <a  href="{% url 'Register' %}">CREAR USUARIO!</a>   
-                    </button>
+                        <a class="btn btn-danger" href="{% url 'Register' %}">CREAR USUARIO!</a>   
                     <br>
                 </div>
             </div>

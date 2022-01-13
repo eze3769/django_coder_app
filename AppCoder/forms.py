@@ -8,10 +8,18 @@ class ContactoFormulario(forms.Form):
     telefono= forms.IntegerField()
     mensaje= forms.CharField()
 
-class LabialesFormulario(forms.Form):    
+class ProductosFormulario(forms.Form):   
+    CHOICES= (('labiales','labiales'),
+                ('cremas','cremas'))
+                 
     nombre = forms.CharField(max_length=40)
     stock= forms.IntegerField()
-    precio= forms.IntegerField()
+    precio= forms.FloatField()
+    categoria = forms.CharField(widget=forms.Select(choices=CHOICES))
+    URLimagen = forms.CharField(max_length=160)
+    descripcion = forms.CharField(max_length=250)
+
+    
 
 
 class AvatarFormulario(forms.Form):
@@ -22,7 +30,7 @@ class AvatarFormulario(forms.Form):
 
 class UserRegisterForm(UserCreationForm):
 
-    username= forms.CharField() 
+    username= forms.CharField()
     email= forms.CharField() 
     password1= forms.CharField(label="Contraseña", widget= forms.PasswordInput) 
     password2= forms.CharField(label="Repetir la contraseña", widget= forms.PasswordInput)
@@ -36,12 +44,13 @@ class UserRegisterForm(UserCreationForm):
 class UserEditForm(UserCreationForm):
 
 
-    email= forms.CharField(label="Ingrese su email:") 
+    email= forms.CharField() 
     password1= forms.CharField(label="Contraseña", widget= forms.PasswordInput) 
     password2= forms.CharField(label="Repetir la contraseña", widget= forms.PasswordInput)
 
     last_name= forms.CharField()  
     first_name= forms.CharField() 
+
 
     class Meta:
         model= User

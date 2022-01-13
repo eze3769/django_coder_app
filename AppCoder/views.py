@@ -1,8 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppCoder.models import Contacto, Cremas, Labiales, Avatar
-from AppCoder.forms import ContactoFormulario, LabialesFormulario, UserRegisterForm, UserEditForm, AvatarFormulario
+from AppCoder.models import Contacto, Producto, Avatar
+from AppCoder.forms import ContactoFormulario, UserRegisterForm, UserEditForm, ProductosFormulario, AvatarFormulario
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required   
+
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 
 # Create your views here.
 def inicio(request):
@@ -13,13 +19,12 @@ def inicio(request):
     if request.user.is_authenticated:
         avatar = Avatar.objects.filter( user = request.user.id)
         
-        for a in avatar:
-            cantidadDeAvatares = cantidadDeAvatares + 1
+      #   for a in avatar:
+      #       cantidadDeAvatares = cantidadDeAvatares + 1
     
     
-        diccionario["avatar"] = avatar[cantidadDeAvatares-1].imagen.url
+      #   diccionario["avatar"] = avatar[cantidadDeAvatares-1].imagen.url
 
-    #return HttpResponse("Esto es una prueba del inicio")
     return render(request, 'AppCoder/inicio.html', diccionario)
 
 def makeup(request):
@@ -29,6 +34,29 @@ def makeup(request):
 def skincare(request):
    
    return render(request, "AppCoder/skincare.html")
+
+def tienda(request):
+   q = request.GET.get('busqueda', '')
+   if q:
+      productos = Producto.objects.filter(nombre__icontains=q)
+      context = {"productos": productos,}
+      
+ 
+      return render(request, "AppCoder/tienda.html", context) 
+   else:
+      productos = Producto.objects.all()
+
+      context = {"productos": productos,
+              }
+ 
+      return render(request, "AppCoder/tienda.html", context) 
+
+   
+def detalles(request, producto_id):
+   obj = Producto.objects.get(pk=producto_id)
+   context = {"producto": obj}
+
+   return render(request, "AppCoder/detalles.html", context)
 
 def nosotros(request):
    
@@ -53,133 +81,100 @@ def contacto(request):
    
    return render(request, "AppCoder/contacto.html", {"miFormulario": miFormulario})
 
-def busquedaCremas(request):
-   return render(request, "AppCoder/busquedaCremas.html")
-
-
-def buscarCremas(request):
-
-   if request.GET["nombre"]:
-      nombre= request.GET["nombre"]
-
-      cremas= Cremas.objects.filter(nombre__icontains=nombre)
-    #  respuesta= f"Estoy buscando a: {request.GET['nombre']}"
-      return render(request, "AppCoder/resultadoBusqueda.html", {"cremas": cremas, "nombre": nombre})
-
-   else:
-      respuesta= "Ingresá una crema"
-
-   return HttpResponse(respuesta)
-
-from django.contrib.auth.decorators import login_required   
-
-@login_required
-def leerLabiales(request):
-   labiales= Labiales.objects.all()
-   dir={"labiales":labiales} #contexto
-   return render(request, "AppCoder/leerLabiales.html", dir)
-
-
-def eliminarLabial(request, nombre_para_borrar):
-   labialQueQuieroBorrar = Labiales.objects.get(nombre=nombre_para_borrar)  
-   labialQueQuieroBorrar.delete()
-
-   labiales=Labiales.objects.all()
-
-   return render(request, "AppCoder/leerLabiales.html", {"labiales":labiales})
-
-
-def editarLabial(request, nombre_para_editar):
-
-   labiales = Labiales.objects.get(nombre=nombre_para_editar) 
+def productosFormulario(request):
 
    if request.method == "POST":
 
-      miFormulario= LabialesFormulario(request.POST)
+      miFormulario= ProductosFormulario(request.POST)
       if miFormulario.is_valid():
          informacion= miFormulario.cleaned_data
 
-      
-
-         labiales.nombre= informacion["nombre"]
-         labiales.stock= informacion["stock"]
-         labiales.precio= informacion["precio"]
-
-         
-
-         labiales.save()
-
-         return render(request, "AppCoder/inicio.html")
-
-
-   else:
-
-      miFormulario= LabialesFormulario(initial={"nombre":labiales.nombre, "stock":labiales.stock, "precio":labiales.precio})   
-   
-   return render(request, "AppCoder/editarLabial.html", {"miFormulario": miFormulario, "nombre_para_editar": nombre_para_editar})
-
-
-
-def labialesFormulario(request):
-
-   if request.method == "POST":
-
-      miFormulario= LabialesFormulario(request.POST)
-      if miFormulario.is_valid():
-         informacion= miFormulario.cleaned_data
-
-         lab= Labiales(
+         obj= Producto(
 
             nombre= informacion["nombre"],
             stock= informacion["stock"],
-            precio= informacion["precio"]
-
+            precio= informacion["precio"],
+            categoria = informacion["categoria"],
+            URLimagen = informacion["URLimagen"],
+            descripcion= informacion["descripcion"],
          )
-         lab.save()
-         return render(request, "AppCoder/makeup.html")
+         obj.save()
+
+         productos = Producto.objects.all()
+
+         context = {"productos": productos,
+              }
+         return render(request, "AppCoder/tienda.html", context)
 
 
    else:
 
-      miFormulario= LabialesFormulario()   
+      miFormulario= ProductosFormulario()   
    
-   return render(request, "AppCoder/labialesFormulario.html", {"miFormulario": miFormulario})
+   return render(request, "AppCoder/producto_form.html", {"miFormulario": miFormulario, "method": "POST"})
+
+def editarProducto(request, producto_id):
+
+   producto = Producto.objects.get(id= producto_id) 
+
+   if request.method == "POST":
+
+      miFormulario= ProductosFormulario(request.POST)
+      if miFormulario.is_valid():
+         informacion= miFormulario.cleaned_data
+
+         producto.nombre= informacion["nombre"]
+         producto.stock= informacion["stock"]
+         producto.precio= informacion["precio"]
+         producto.categoria = informacion["categoria"]
+         producto.URLimagen = informacion["URLimagen"]
+         producto.descripcion= informacion["descripcion"]
+         
+
+         
+
+         producto.save()
+
+         productos = Producto.objects.all()
+
+         context = {"productos": productos,
+              }
+         return render(request, "AppCoder/tienda.html", context)
 
 
+   else:
+
+      miFormulario= ProductosFormulario(initial={
+         "nombre":producto.nombre , 
+         "stock":producto.stock , 
+         "precio":producto.precio ,
+         "categoria":producto.categoria ,
+         "URLimagen": producto.URLimagen ,
+         "descripcion":producto.descripcion ,
+
+         })   
+
+      context = {
+         "miFormulario": miFormulario, 
+         "producto": producto.nombre, 
+         "method": "POST"}
+   
+   return render(request, "AppCoder/producto_form.html", context)
+
+
+def eliminarProducto(request, producto_id):
+   producto = Producto.objects.get(pk=producto_id) 
+   producto.delete()
+
+   productos=Producto.objects.all()
+
+   return render(request, "AppCoder/tienda.html", {"productos":productos})
 
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 #from django.urls import reverse_lazy
-
-class CremasList(ListView):
-   model = Cremas
-   template_name= "AppCoder/cremas_list.html"
-
-class CremasDetalle(DetailView):   
-   model= Cremas
-   template_name= "AppCoder/cremas_detalle.html"
-
-
-class CremasCreacion(CreateView):
-
-    model = Cremas
-    success_url = "../AppCoder/cremas/list"
-    fields = ['nombre', 'stock', 'precio'] 
-
-
-class CremasUpdate(UpdateView):
-
-      model = Cremas
-      success_url = "../cremas/list"
-      fields  = ['nombre', 'stock', 'precio'] 
-
-
-class CremasDelete(DeleteView):
-
-      model = Cremas
-      success_url = "../cremas/list"
 
 
 from django.contrib.auth.forms import AuthenticationForm      

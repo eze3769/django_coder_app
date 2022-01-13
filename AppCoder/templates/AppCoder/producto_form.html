@@ -1,0 +1,37 @@
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia2 %}
+<h2 class="text-white-50 mx-auto mt-2 mb-5">TIENDA</h2>
+
+
+
+
+{% endblock %}
+
+{% block contenidoQueCambia %}
+       
+
+        <div class="container d-flex flex-column">
+            <h3>Gestor de productos</h3>
+            {% if producto %}
+                
+                <h4 class="m-3 text-center">{{producto}}</h4>
+            {%endif%}
+
+            <form action="" method="{{method}}" class="d-flex flex-column text-black p-3 mx-5">
+                {% csrf_token %}
+                {{ miFormulario.as_table }}
+                <input class="btn btn-primary my-3" type="submit" value="ACEPTAR" />
+            </form>
+            <div class="container">
+                <a href='{% url "Tienda" %}' class="btn btn-secondary m-2">Volver a la tienda</a>
+            </div>
+            
+        </div>
+     
+{% endblock %}                        
+                            
+                            
+                            
+                            

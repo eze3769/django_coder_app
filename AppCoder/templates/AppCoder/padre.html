@@ -31,6 +31,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="navbar-brand"><a class="nav-link" href="{% url 'Makeup' %}">MAKEUP</a></li>
                         <li class="navbar-brand"><a class="nav-link" href="{% url 'Skincare' %}">SKINCARE</a></li>
+                        <li class="navbar-brand"><a class="nav-link" href="{% url 'Tienda' %}">TIENDA</a></li>
                         <li class="navbar-brand"><a class="nav-link" href="{% url 'Nosotros' %}">NOSOTROS</a></li>
                         <li class="navbar-brand"><a class="nav-link" href="{% url 'Contacto' %}">CONTACTO</a></li>
                         {% if not request.user.is_authenticated %}
@@ -38,7 +39,7 @@
                         {% endif %}
 
                         {% if request.user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link"> HOLA {{user.username}}!!</a></li>
+                        <li class="nav-item"><a class="nav-link"> Hola {{user.username}}!</a></li>
                         <img height= "55px" src="{{ avatar }}" alt=""> 
                         <li class="nav-item"><a class="nav-link" href="{% url 'EditarPerfil' %}">EDITAR PERFIL</a></li>
                         <li class="navbar-brand"><a class="nav-link" href="{% url 'Logout' %}">LOGOUT</a></li>
