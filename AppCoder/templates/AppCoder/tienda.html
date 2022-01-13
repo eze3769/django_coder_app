@@ -20,7 +20,7 @@
         {% include "AppCoder/partials/buscador.html" %}
         
     </div>
-    <div class=" d-flex">
+    <div class=" d-flex flex-row ">
     {% for producto in productos %}
         <div class="card" style="width: 18rem;">
             <img src={{ producto.URLimagen }} class="card-img-top" alt={{ producto.nombre }}>
@@ -34,7 +34,6 @@
               {% endif %}
             </div>
           </div>
-        </div>
     {% empty %}
         <div >
             <h3 class=" text-center p-5">Nada que mostrar</h3>
@@ -42,7 +41,7 @@
         </div>
         
     {% endfor %}
-    
+    </div>
 </div>
 
 
